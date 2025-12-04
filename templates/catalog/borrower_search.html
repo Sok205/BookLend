@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Search Borrower</title>
+</head>
+<body>
+    <h1>Search books borrowed by a person</h1>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results is not None %}
+        <h2>Results for "{{ name }}"</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Book id</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Loan id</th>
+                    <th>Loan date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for loan in results %}
+                <tr>
+                    <td>{{ loan.book.id }}</td>
+                    <td>{{ loan.book.title }}</td>
+                    <td>{{ loan.book.author }}</td>
+                    <td>{{ loan.id }}</td>
+                    <td>{{ loan.loan_date }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">No loans found for this borrower.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <p><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Books Borrow Count</title>
+</head>
+<body>
+    <h1>Books borrow count</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Book id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Times borrowed</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.times_borrowed }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4">No books found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>
+
