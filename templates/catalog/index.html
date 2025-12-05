@@ -6,13 +6,22 @@
 </head>
 <body>
     <h1>BookLoan Main Menu</h1>
+    <h2>Display Tables</h2>
     <ul>
+        <li><a href="{% url 'catalog:all_books' %}">Display all books</a></li>
+        <li><a href="{% url 'catalog:all_borrowers' %}">Display all borrowers</a></li>
         <li><a href="{% url 'catalog:loans_list' %}">Display all loans (combined query)</a></li>
+    </ul>
+    <h2>Queries</h2>
+    <ul>
         <li><a href="{% url 'catalog:borrower_search' %}">Show books borrowed by a person (parameter query)</a></li>
         <li><a href="{% url 'catalog:books_borrow_count' %}">Display borrow count per book (aggregate)</a></li>
+    </ul>
+    <h2>Add New Records</h2>
+    <ul>
+        <li><a href="{% url 'catalog:add_book' %}">Add new book</a></li>
         <li><a href="{% url 'catalog:add_borrower' %}">Add new borrower</a></li>
         <li><a href="{% url 'catalog:add_loan' %}">Add new loan</a></li>
-        <li><a href="{% url 'catalog:add_book' %}">Add new book</a></li>
     </ul>
 </body>
 </html>

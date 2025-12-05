@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Count
 
-from .models import Book, Loan
+from .models import Book, Loan, Borrower
 from .forms import BorrowerForm, LoanForm, BorrowerSearchForm, BookForm
 
 
@@ -61,3 +61,13 @@ def add_book(request):
     else:
         form = BookForm()
     return render(request, 'catalog/add_book.html', {'form': form})
+
+
+def all_books(request):
+    books = Book.objects.all()
+    return render(request, 'catalog/books_list.html', {'books': books})
+
+
+def all_borrowers(request):
+    borrowers = Borrower.objects.all()
+    return render(request, 'catalog/borrowers_list.html', {'borrowers': borrowers})

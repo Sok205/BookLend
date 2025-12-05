@@ -5,6 +5,8 @@ app_name = 'catalog'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('books/', views.all_books, name='all_books'),
+    path('borrowers/', views.all_borrowers, name='all_borrowers'),
     path('loans/', views.loans_list, name='loans_list'),
     path('search/', views.borrower_search, name='borrower_search'),
     path('counts/', views.books_borrow_count, name='books_borrow_count'),
