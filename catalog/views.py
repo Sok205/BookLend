@@ -186,3 +186,27 @@ def query7_ann_stones_orders(request):
         'quantity'
     ).order_by('orderinfo__id')
     return render(request, 'catalog/query7.html', {'ann_orders': ann_orders})
+
+def call_display_text(request):
+    """Call MySQL stored procedure display_text with parameter"""
+    from django.db import connection
+
+    result = None
+    text_param = None
+    error = None
+
+    if request.method == 'POST':
+        text_param = request.POST.get('text_param', '')
+
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute("CALL display_text(%s)", [text_param])
+                result = cursor.fetchone()
+        except Exception as e:
+            error = str(e)
+
+    return render(request, 'catalog/display_text_form.html', {
+        'result': result,
+        'text_param': text_param,
+        'error': error
+    })

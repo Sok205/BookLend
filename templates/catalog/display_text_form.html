@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MySQL Stored Procedure - Display Text</title>
+</head>
+<body>
+    <h1>MySQL Stored Procedure: display_text</h1>
+    <p>This procedure displays a short text passed as a parameter value.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="text_param">Enter text to display:</label><br>
+        <input type="text" id="text_param" name="text_param" value="{{ text_param|default:'' }}" size="50" required>
+        <button type="submit">Call Procedure</button>
+    </form>
+
+    {% if error %}
+        <div style="color: red; margin-top: 20px; padding: 10px; border: 1px solid red;">
+            <strong>Error:</strong> {{ error }}
+            <p><em>Note: This procedure requires MySQL. If you're using SQLite, import the data into MySQL and update settings.py</em></p>
+        </div>
+    {% endif %}
+
+    {% if result %}
+        <div style="margin-top: 20px; padding: 10px; border: 1px solid green; background-color: #e8f5e9;">
+            <h2>Procedure Result:</h2>
+            <p><strong>Displayed Text:</strong> {{ result.0 }}</p>
+        </div>
+    {% endif %}
+
+    <h3 style="margin-top: 30px;">Example Usage:</h3>
+    <p>Try entering your first name (e.g., "Sok") to demonstrate the procedure works correctly.</p>
+
+    <p style="margin-top: 30px;"><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>
