@@ -5,12 +5,21 @@
     <title>BookLoan - Main</title>
 </head>
 <body>
-    <h1>BookLoan Main Menu</h1>
-    <h2>Display Tables</h2>
+    <h1>Database Classes Main Menu</h1>
+    <h2>BookLoan Tables</h2>
     <ul>
         <li><a href="{% url 'catalog:all_books' %}">Display all books</a></li>
         <li><a href="{% url 'catalog:all_borrowers' %}">Display all borrowers</a></li>
         <li><a href="{% url 'catalog:loans_list' %}">Display all loans (combined query)</a></li>
+    </ul>
+    <h2>MO_Sale Tables</h2>
+    <ul>
+        <li><a href="{% url 'catalog:all_customers' %}">Display all customers</a></li>
+        <li><a href="{% url 'catalog:all_items' %}">Display all items</a></li>
+        <li><a href="{% url 'catalog:all_orders' %}">Display all orders</a></li>
+        <li><a href="{% url 'catalog:all_stock' %}">Display all stock</a></li>
+        <li><a href="{% url 'catalog:all_orderlines' %}">Display all order lines</a></li>
+        <li><a href="{% url 'catalog:all_barcodes' %}">Display all barcodes</a></li>
     </ul>
     <h2>Queries</h2>
     <ul>
@@ -22,6 +31,16 @@
         <li><a href="{% url 'catalog:add_book' %}">Add new book</a></li>
         <li><a href="{% url 'catalog:add_borrower' %}">Add new borrower</a></li>
         <li><a href="{% url 'catalog:add_loan' %}">Add new loan</a></li>
+    </ul>
+    <h2>MO_Sale Queries</h2>
+    <ul>
+        <li><a href="{% url 'catalog:query1' %}">Query 1: Customers from towns starting with 'h'</a></li>
+        <li><a href="{% url 'catalog:query2' %}">Query 2: Items with NULL values</a></li>
+        <li><a href="{% url 'catalog:query3' %}">Query 3: All customers</a></li>
+        <li><a href="{% url 'catalog:query4' %}">Query 4: All customers</a></li>
+        <li><a href="{% url 'catalog:query5' %}">Query 5: All order details</a></li>
+        <li><a href="{% url 'catalog:query6' %}">Query 6: Order totals</a></li>
+        <li><a href="{% url 'catalog:query7' %}">Query 7: Items ordered by Ann Stones</a></li>
     </ul>
 </body>
 </html>
