@@ -33,4 +33,5 @@ urlpatterns = [
     path('query7/', views.query7_ann_stones_orders, name='query7'),
     # MySQL Stored Procedures
     path('procedure/display/', views.call_display_text, name='call_display_text'),
+    path('procedure/display-three/', views.call_display_text_three_times, name='call_display_text_three_times'),
 ]

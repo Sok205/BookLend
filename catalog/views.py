@@ -212,3 +212,25 @@ def call_display_text(request):
         'text_param': text_param,
         'error': error
     })
+
+
+def call_display_text_three_times(request):
+
+    result = None
+    text_param = None
+
+    if request.method == 'POST':
+        text_param = request.POST.get('text_param', '')
+
+        repeated_text = ''
+        counter = 0
+        while counter < 3:
+            repeated_text += text_param + ' '
+            counter += 1
+
+        result = (repeated_text.strip(),)
+
+    return render(request, 'catalog/display_text_three_times_form.html', {
+        'result': result,
+        'text_param': text_param
+    })
