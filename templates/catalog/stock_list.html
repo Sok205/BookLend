@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>All Stock</title>
+</head>
+<body>
+    <h1>All Stock</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Item Description</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for s in stock %}
+            <tr>
+                <td>{{ s.item.id }}</td>
+                <td>{{ s.item.description }}</td>
+                <td>{{ s.quantity }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="3">No stock records found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>
