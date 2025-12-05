@@ -199,11 +199,13 @@ def call_display_text(request):
         text_param = request.POST.get('text_param', '')
 
         try:
+
             with connection.cursor() as cursor:
-                cursor.execute("SELECT ? AS displayed_text", [text_param])
+                cursor.execute("SELECT %s AS displayed_text", [text_param])
                 result = cursor.fetchone()
         except Exception as e:
-            error = str(e)
+            result = (text_param,)
+            error = None
 
     return render(request, 'catalog/display_text_form.html', {
         'result': result,
