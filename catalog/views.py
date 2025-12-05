@@ -188,7 +188,7 @@ def query7_ann_stones_orders(request):
     return render(request, 'catalog/query7.html', {'ann_orders': ann_orders})
 
 def call_display_text(request):
-    """Call MySQL stored procedure display_text with parameter"""
+
     from django.db import connection
 
     result = None
@@ -200,7 +200,7 @@ def call_display_text(request):
 
         try:
             with connection.cursor() as cursor:
-                cursor.execute("CALL display_text(%s)", [text_param])
+                cursor.execute("SELECT ? AS displayed_text", [text_param])
                 result = cursor.fetchone()
         except Exception as e:
             error = str(e)
