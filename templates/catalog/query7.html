@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Query 7 - Ann Stones Orders</title>
+</head>
+<body>
+    <h1>Query 7: Items Ordered by Ann Stones</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Placed</th>
+                <th>Item Description</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in ann_orders %}
+            <tr>
+                <td>{{ order.orderinfo__id }}</td>
+                <td>{{ order.orderinfo__customer__fname }}</td>
+                <td>{{ order.orderinfo__customer__lname }}</td>
+                <td>{{ order.orderinfo__date_placed }}</td>
+                <td>{{ order.item__description }}</td>
+                <td>{{ order.quantity }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="6">No orders found for Ann Stones.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>

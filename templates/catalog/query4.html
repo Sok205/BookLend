@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Query 4 - All Customers (Concatenated)</title>
+</head>
+<body>
+    <h1>Query 4: All Customers - Concatenated into Single String</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Customer Info</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+            <tr>
+                <td>{{ customer.customer_info }}</td>
+            </tr>
+        {% empty %}
+            <tr><td>No customers found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>
