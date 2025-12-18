@@ -344,16 +344,24 @@ def low_stock_procedure(request):
 
 def add_item_with_trigger(request):
     """Task 5: Add new item and simulate AFTER INSERT trigger"""
-    from decimal import Decimal
+    from decimal import Decimal, InvalidOperation
     from .models import ItemHistory
 
     if request.method == 'POST':
         description = request.POST.get('description', '')
-        cost_price = request.POST.get('cost_price', '')
-        sell_price = request.POST.get('sell_price', '')
+        cost_price_str = request.POST.get('cost_price', '').strip()
+        sell_price_str = request.POST.get('sell_price', '').strip()
 
-        cost_price = Decimal(cost_price) if cost_price else None
-        sell_price = Decimal(sell_price) if sell_price else None
+        # Convert to Decimal or None, handling empty strings
+        try:
+            cost_price = Decimal(cost_price_str) if cost_price_str else None
+        except (InvalidOperation, ValueError):
+            cost_price = None
+
+        try:
+            sell_price = Decimal(sell_price_str) if sell_price_str else None
+        except (InvalidOperation, ValueError):
+            sell_price = None
 
         new_item = Item.objects.create(
             description=description,

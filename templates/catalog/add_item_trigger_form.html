@@ -14,10 +14,10 @@
         <input type="text" id="description" name="description" size="50" required><br><br>
 
         <label for="cost_price">Cost Price (£):</label><br>
-        <input type="number" id="cost_price" name="cost_price" step="0.01" placeholder="Leave empty for NULL"><br><br>
+        <input type="number" id="cost_price" name="cost_price" step="0.01" min="0" placeholder="Leave empty for NULL"><br><br>
 
         <label for="sell_price">Sell Price (£):</label><br>
-        <input type="number" id="sell_price" name="sell_price" step="0.01" placeholder="Leave empty for NULL"><br><br>
+        <input type="number" id="sell_price" name="sell_price" step="0.01" min="0" placeholder="Leave empty for NULL"><br><br>
 
         <button type="submit">Add Item</button>
     </form>
