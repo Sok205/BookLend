@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Add Item with Trigger</title>
+</head>
+<body>
+    <h1>Task 5: Add Item (AFTER INSERT Trigger Simulation)</h1>
+    <p>This simulates an AFTER INSERT trigger that automatically populates the item_history table when a new item is inserted.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="description">Item Description:</label><br>
+        <input type="text" id="description" name="description" size="50" required><br><br>
+
+        <label for="cost_price">Cost Price (£):</label><br>
+        <input type="number" id="cost_price" name="cost_price" step="0.01" placeholder="Leave empty for NULL"><br><br>
+
+        <label for="sell_price">Sell Price (£):</label><br>
+        <input type="number" id="sell_price" name="sell_price" step="0.01" placeholder="Leave empty for NULL"><br><br>
+
+        <button type="submit">Add Item</button>
+    </form>
+
+    <h3 style="margin-top: 30px;">How the trigger works:</h3>
+    <p>After inserting a new item:</p>
+    <ul>
+        <li>If cost_price OR sell_price is NULL → Status: "Price contains NULL"</li>
+        <li>Otherwise → Status: "OK"</li>
+    </ul>
+    <p>The item_history table is automatically populated with the item details and status.</p>
+
+    <p style="margin-top: 30px;"><strong>Try it:</strong></p>
+    <ul>
+        <li>Add an item WITH both prices → See "OK" in history</li>
+        <li>Add an item WITHOUT prices (leave blank) → See "Price contains NULL" in history</li>
+    </ul>
+
+    <p style="margin-top: 30px;"><a href="{% url 'catalog:item_history' %}">View Item History</a> | <a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Item History</title>
+</head>
+<body>
+    <h1>Task 5: Item History (Trigger Results)</h1>
+    <p>This table shows all items that have been inserted, populated automatically by the AFTER INSERT trigger simulation.</p>
+
+    {% if history %}
+        <table border="1" cellpadding="10" cellspacing="0" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Item ID</th>
+                    <th>Item Description</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in history %}
+                <tr style="{% if record.status == 'Price contains NULL' %}background-color: #ffebee;{% else %}background-color: #e8f5e9;{% endif %}">
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.item.id }}</td>
+                    <td>{{ record.item_description }}</td>
+                    <td><strong>{{ record.status }}</strong></td>
+                    <td>{{ record.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="margin-top: 20px;">No item history records found. Add items using the form to see trigger results.</p>
+    {% endif %}
+
+    <p style="margin-top: 30px;"><a href="{% url 'catalog:add_item_trigger' %}">Add New Item</a> | <a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>

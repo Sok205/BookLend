@@ -86,3 +86,43 @@ class Barcode(models.Model):
 
     def __str__(self):
         return self.barcode_ean
+
+
+# MoAdvanced Models
+
+class ItemHistory(models.Model):
+    """Tracks item insertions - simulates AFTER INSERT trigger"""
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='history')
+    item_description = models.CharField(max_length=64)
+    status = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.item_description} - {self.status}"
+
+
+class ComparisonTable1(models.Model):
+    """First table for cursor comparison demonstration"""
+    id = models.IntegerField(primary_key=True)
+    value = models.IntegerField()
+
+    def __str__(self):
+        return f"Table1 #{self.id}: {self.value}"
+
+
+class ComparisonTable2(models.Model):
+    """Second table for cursor comparison demonstration"""
+    id = models.IntegerField(primary_key=True)
+    value = models.IntegerField()
+
+    def __str__(self):
+        return f"Table2 #{self.id}: {self.value}"
+
+
+class ComparisonResult(models.Model):
+    """Result table for cursor comparison"""
+    id = models.IntegerField(primary_key=True)
+    comparison = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"#{self.id}: {self.comparison}"

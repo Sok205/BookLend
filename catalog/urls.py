@@ -34,4 +34,13 @@ urlpatterns = [
     # MySQL Stored Procedures
     path('procedure/display/', views.call_display_text, name='call_display_text'),
     path('procedure/display-three/', views.call_display_text_three_times, name='call_display_text_three_times'),
+    # MoAdvanced Features
+    path('advanced/order-details/', views.order_details_view, name='order_details_view'),
+    path('advanced/customer-orders/', views.customer_orders_procedure, name='customer_orders_proc'),
+    path('advanced/compare-numbers/', views.compare_numbers_procedure, name='compare_numbers_proc'),
+    path('advanced/low-stock/', views.low_stock_procedure, name='low_stock_proc'),
+    path('advanced/add-item/', views.add_item_with_trigger, name='add_item_trigger'),
+    path('advanced/item-history/', views.item_history_view, name='item_history'),
+    path('advanced/print-text-loop/', views.print_text_loop_procedure, name='print_text_loop'),
+    path('advanced/compare-tables/', views.compare_tables_cursor, name='compare_tables_cursor'),
 ]

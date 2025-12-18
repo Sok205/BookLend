@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Compare Numbers Procedure</title>
+</head>
+<body>
+    <h1>Task 3: Compare Two Numbers (IF Function Simulation)</h1>
+    <p>This simulates a stored procedure that compares two numbers using the MySQL IF function.</p>
+    <p><em>Reference: <a href="https://dev.mysql.com/doc/refman/8.0/en/if.html" target="_blank">MySQL IF Function Documentation</a></em></p>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="num1">Number 1:</label><br>
+        <input type="number" id="num1" name="num1" value="{{ num1|default:'' }}" required><br><br>
+
+        <label for="num2">Number 2:</label><br>
+        <input type="number" id="num2" name="num2" value="{{ num2|default:'' }}" required><br><br>
+
+        <button type="submit">Compare Numbers</button>
+    </form>
+
+    {% if result %}
+        <div style="margin-top: 20px; padding: 10px; border: 1px solid green; background-color: #e8f5e9;">
+            <h2>Comparison Result:</h2>
+            <p><strong>Number 1:</strong> {{ result.number1 }}</p>
+            <p><strong>Number 2:</strong> {{ result.number2 }}</p>
+            <p><strong>Result:</strong> {{ result.comparison_result }}</p>
+        </div>
+    {% endif %}
+
+    <h3 style="margin-top: 30px;">How it works:</h3>
+    <p>This simulates the MySQL IF function logic:</p>
+    <pre>IF(num1 > num2, 'num1 is greater',
+   IF(num1 < num2, 'num2 is greater', 'numbers are equal'))</pre>
+
+    <p style="margin-top: 30px;"><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>

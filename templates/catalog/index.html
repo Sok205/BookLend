@@ -118,5 +118,35 @@
             </ul>
         </div>
     </div>
+
+    <div class="section">
+        <h2>MO_Sale Advanced Features</h2>
+
+        <div class="subsection">
+            <h3>Database Views</h3>
+            <ul>
+                <li><a href="{% url 'catalog:order_details_view' %}">View: Order Details</a></li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Stored Procedures</h3>
+            <ul>
+                <li><a href="{% url 'catalog:customer_orders_proc' %}">Customer Orders (Parameterized)</a></li>
+                <li><a href="{% url 'catalog:compare_numbers_proc' %}">Compare Two Numbers (IF function)</a></li>
+                <li><a href="{% url 'catalog:low_stock_proc' %}">Low Stock Items (Threshold parameter)</a></li>
+                <li><a href="{% url 'catalog:print_text_loop' %}">Print Text 3 Times (LOOP construct)</a></li>
+                <li><a href="{% url 'catalog:compare_tables_cursor' %}">Compare Tables (Cursor)</a></li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Triggers</h3>
+            <ul>
+                <li><a href="{% url 'catalog:add_item_trigger' %}">Add Item (with AFTER INSERT trigger)</a></li>
+                <li><a href="{% url 'catalog:item_history' %}">View Item History</a></li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

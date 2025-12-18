@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Compare Tables with Cursor</title>
+</head>
+<body>
+    <h1>Task 7: Compare Two Tables (Cursor Simulation)</h1>
+    <p>This simulates a stored procedure using a cursor to compare values from two tables and generate comparison results.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Execute Cursor Procedure</button>
+    </form>
+
+    {% if table1 and table2 %}
+        <h2 style="margin-top: 30px;">Source Tables:</h2>
+
+        <div style="display: flex; gap: 20px;">
+            <div>
+                <h3>Table 1</h3>
+                <table border="1" cellpadding="10" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in table1 %}
+                        <tr>
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.value }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3>Table 2</h3>
+                <table border="1" cellpadding="10" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in table2 %}
+                        <tr>
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.value }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if result %}
+        <h2 style="margin-top: 30px;">Comparison Results:</h2>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Comparison</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in result %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td><strong>{{ row.comparison }}</strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <h3 style="margin-top: 30px;">How the cursor works:</h3>
+    <p>The procedure:</p>
+    <ol>
+        <li>Creates two demo tables with 5 records each (id and value columns)</li>
+        <li>Declares a cursor to iterate through joined rows from both tables</li>
+        <li>For each row, compares values:
+            <ul>
+                <li>If table1.value > table2.value → "t1 > t2"</li>
+                <li>Otherwise → "t1 ≤ t2"</li>
+            </ul>
+        </li>
+        <li>Inserts results into the comparison_result table</li>
+    </ol>
+
+    <p style="margin-top: 30px;"><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>

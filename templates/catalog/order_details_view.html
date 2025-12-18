@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Order Details View</title>
+</head>
+<body>
+    <h1>Task 1: Order Details View (Simulated SQL VIEW)</h1>
+    <p>This simulates a SQL VIEW that displays order details with customer information, items, and calculated totals.</p>
+
+    {% if order_details %}
+        <table border="1" cellpadding="10" cellspacing="0" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Order Number</th>
+                    <th>Customer First Name</th>
+                    <th>Customer Last Name</th>
+                    <th>Date Placed</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Sell Price (£)</th>
+                    <th>Total Value (£)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in order_details %}
+                <tr>
+                    <td>{{ order.order_number }}</td>
+                    <td>{{ order.customer_fname }}</td>
+                    <td>{{ order.customer_lname }}</td>
+                    <td>{{ order.date_placed }}</td>
+                    <td>{{ order.item_name }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.sell_price }}</td>
+                    <td>{{ order.total_value_gbp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="margin-top: 20px;">No order details found.</p>
+    {% endif %}
+
+    <p style="margin-top: 30px;"><a href="{% url 'catalog:index' %}">Back to menu</a></p>
+</body>
+</html>
